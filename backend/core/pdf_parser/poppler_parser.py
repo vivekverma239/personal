@@ -85,7 +85,7 @@ def get_contexts(path):
             current_blank = 0 
 
     contexts = [] 
-    k = 5 
+    k = 3 
     stride = 2
     for idx in range(0, max(len(sentences) - k, 1), stride): 
         valid_sentences = sentences[idx: idx + k]

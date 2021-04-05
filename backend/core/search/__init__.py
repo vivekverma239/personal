@@ -7,10 +7,10 @@ from transformers import BertForQuestionAnswering, BertForSequenceClassification
 from transformers import BertTokenizer
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
-model = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
-tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
-longformer = AutoTokenizer.from_pretrained("mrm8488/longformer-base-4096-finetuned-squadv2")
-long_tokenizer = AutoModelForQuestionAnswering.from_pretrained("mrm8488/longformer-base-4096-finetuned-squadv2")
+# model = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+# tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+# longformer = AutoTokenizer.from_pretrained("mrm8488/longformer-base-4096-finetuned-squadv2")
+# long_tokenizer = AutoModelForQuestionAnswering.from_pretrained("mrm8488/longformer-base-4096-finetuned-squadv2")
 custom = BertForSequenceClassification.from_pretrained('data/models/RERANK_MODEL_DIR/')
 custom_tokenizer = BertTokenizer.from_pretrained('data/models/RERANK_MODEL_DIR/')
 
@@ -129,15 +129,15 @@ def search_classifier(question, responses):
     print(scores.shape)
     # ======== Reconstruct Answer ========
     # Find the tokens with the highest `start` and `end` scores.
-    scores = torch.max(scores, dim=-1)[0]
-    return scores.detach().numpy()
+    # scores = torch.max(scores, dim=-1)[0]
+    return scores[:, 1].detach().numpy()
 
 # if __name__ == '__main__': 
-    # from core.es import search_sections
-    # query = "how many number of privilege leaves employee get"
-    # results = search_sections(query=query, params={"project_id": "f6da25c7-8275-4b2c-bbab-cc4f8ec5e029"})
-    # responses = [i['_source']['text'] for i in results]
-    # scores = search_classifier(query, responses)
-    # for idx, response in enumerate(responses): 
-    #     print(response)
-    #     print(scores[idx])
+    from core.es import search_sections
+    query = "how many number of privilege leaves employee get"
+    results = search_sections(query=query, params={"project_id": "f6da25c7-8275-4b2c-bbab-cc4f8ec5e029"})
+    responses = [i['_source']['text'] for i in results]
+    scores = search_classifier(query, responses)
+    for idx, response in enumerate(responses): 
+        print(response)
+        print(scores[idx])

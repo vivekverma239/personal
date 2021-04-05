@@ -30,8 +30,8 @@ SETTINGS = {
                "stopwords":"_english_"
             },
           "synonym": {
-            "type": "synonym",
-            "synonyms_path": "../data/synonyms.txt"
+            "type": "synonym_graph",
+            "synonyms_path": "../data/synonyms_v3.txt"
           }
         }
       }
@@ -99,7 +99,7 @@ PAGE_SETTINGS = {
                "stopwords":"_english_"
             },
           "synonym": {
-            "type": "synonym",
+            "type": "synonym_graph",
             "synonyms_path": "../data/synonyms.txt"
           }
         }
@@ -144,11 +144,9 @@ PAGE_SETTINGS = {
 
 ES_INDEX = os.environ["INDEX_NAME"]
 PAGE_ES_INDEX = os.environ["PAGE_INDEX_NAME"]
-TEST_ES_INDEX = "test_index"
+TEST_ES_INDEX = "test_index_v5"
 
 ES_HOST = os.environ["ES_HOST"]
-
-
 
 def main():
     es = Elasticsearch(hosts=[ES_HOST])

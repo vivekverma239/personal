@@ -1,0 +1,27 @@
+@charset "utf-8";
+// Import a Google Font
+
+// Set your brand colors
+$purple: rgb(50, 51, 119);
+$pink: rgb(195, 131, 166);
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Update Bulma's global variables
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $purple;
+$link: $pink;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige-lighter;
+$navbar-background-color: $beige-lighter;
+$navbar-item-color: $primary;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import "../node_modules/bulma/bulma.sass";

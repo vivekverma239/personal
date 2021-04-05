@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  flask-backend:
+    build: .
+    container_name: flask-backend
+    restart: always
+    depends_on:
+      - tf-serving
+    expose:
+      - 8000
+    ports:
+      - "80:8000"
+    environment:
+      ENV: prod
+    command: bash -c "gunicorn --workers=2 --timeout 600 wsgi:app --log-level=debug -b 0.0.0.0:8000"
+  tf-serving:
+    container_name: tf-serving
+    restart: always
+    image: tensorflow/serving:latest
+    expose:
+      - 8500
+      - 8501
+    ports:
+      - 8501:8501
+      - 8500:8500
+    volumes:
+      - "./data/serving_models/:/models/"
+    command: --model_config_file=/models/models.config --model_config_file_poll_wait_seconds=60
+networks:
+  default:
+    name: docker-net
+    driver: bridge

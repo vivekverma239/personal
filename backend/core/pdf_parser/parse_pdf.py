@@ -403,7 +403,7 @@ class PDFParser:
         self.text = convert_pdf(self.file_name, format='text')
         self.root = ET.fromstring(self.xml)
         self._parse_xml()
-        self.all_lines, self.contexts = get_contexts(file_name)
+        self.all_lines, self.all_sentences, self.contexts = get_contexts(file_name)
         # self._detect_cluster()
 
     def _extract_textline_properties(self, item):
@@ -589,7 +589,8 @@ class PDFParser:
         data = {
             "pages": self.pages,
             "contexts": self.contexts,
-            'all_lines': self.all_lines
+            'all_lines': self.all_lines,
+            'all_sentences': self.all_sentences
             # "cluster_texts": self.cluster_text
         }
         return data

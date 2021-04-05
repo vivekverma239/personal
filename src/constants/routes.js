@@ -8,3 +8,6 @@ export const PASSWORD_FORGET = "/pw-forget";
 export const SKIPPING_APP = "/skipping-app";
 export const STOCK_PRED = "/stock-pred";
 export const FILE_SEARCH = "/file-search";
+export const PDF_PARSE = "/pdf-parse";
+export const PROJECTS = "/projects";
+export const Chessboard_REC = "/chessboard";

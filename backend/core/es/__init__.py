@@ -79,5 +79,4 @@ def search_sections(query=None, params={}):
                     index=INDEX_NAME,
                     body=body
                 )
-    print(body)
     return response['hits']['hits']

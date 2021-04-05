@@ -31,3 +31,17 @@ export class BaseCRUDService {
     return http.delete(`/${this.base}/`).then((res) => res.data);
   }
 }
+
+export class ChessboardRecService {
+  constructor() {
+    this.base = "chessboard";
+  }
+
+  predict = async (formdata) => {
+    return http.post(`/${this.base}/`, formdata).then((res) => res.data);
+  };
+
+  getImage = async (id) => {
+    return http.get(`/${this.base}/${id}/download`).then((res) => res.data);
+  };
+}

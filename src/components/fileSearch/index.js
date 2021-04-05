@@ -340,8 +340,6 @@ const AddFileForm = (props) => {
   const onFinish = async (values) => {
     var formdata = new FormData();
     formdata.append("name", values.name);
-    formdata.append("lang", values.lang);
-    formdata.append("project_id", props.projectId);
     formdata.append("applicable_for", JSON.stringify(values.condition));
     formdata.append("is_scanned", values.isScanned ? true : false);
     if (values.file) {
@@ -439,13 +437,6 @@ const AddFileForm = (props) => {
   );
 };
 
-var projects = [
-  ["WNS", "f6da25c7-8275-4b2c-bbab-cc4f8ec5e029"],
-  ["Trident", "a64e63bc-c4c9-4506-b5f5-3143f61b78c0"],
-  ["Nestle", "f50f2bf9-faa8-406f-999c-89d21bad6587"],
-  ["Pernod Ricard", "4e9ef0bf-e4de-4b8f-a107-e5fd73bf2cee"],
-  ["Ashirvad Pipes", "47242578-ced9-4344-bc53-c1fb8d8bbddb"],
-];
 const ProjectPolicyView = (props) => {
   const [flag, updateFlag] = useState({});
   const [fileIdx, updateFileIdx] = useState(null);
@@ -508,6 +499,7 @@ const ProjectPolicyView = (props) => {
       queryClient.invalidateQueries("searchFiles");
     },
   });
+
   console.log(
     fileIdx && searchFiles.data.results[fileIdx]
       ? searchFiles.data.results[fileIdx]
@@ -556,90 +548,7 @@ const ProjectPolicyView = (props) => {
           </div>
         </div>
       </Drawer>
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="File Search" key="1">
-          <div
-            style={{
-              width: "100%",
-              marginTop: "20px",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Select
-              style={{ width: "200px" }}
-              placeholder="Select Project"
-              size="large"
-              value={searchParams.project_id}
-              onSelect={(e) =>
-                updateSearchParams({ ...searchParams, project_id: e })
-              }
-            >
-              {projects.map((item) => (
-                <Select.Option key={item[1]} value={item[1]}>
-                  {item[0]}
-                </Select.Option>
-              ))}
-            </Select>
-            <Input.Search
-              placeholder="input search text"
-              allowClear
-              size="large"
-              onSearch={(e) =>
-                updateSearchParams({ ...searchParams, query: e })
-              }
-              enterButton="Search"
-              style={{
-                width: "70%",
-                borderRadius: "10px",
-              }}
-            />
-          </div>
-          <Row
-            style={{
-              marginTop: "2rem",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {searchResultIdx != null &&
-            searchResults.data &&
-            searchResults.data[searchResultIdx] ? (
-              <div>
-                <Button
-                  onClick={() => {
-                    updateSearchResultIdx(null);
-                  }}
-                  icon={<ArrowLeftOutlined />}
-                >
-                  Back to Results
-                </Button>
-                <PDFParser
-                  pdfFile={{
-                    id:
-                      searchResults.data[searchResultIdx]["_source"]["file_id"],
-                  }}
-                  pageNumber={parseInt(
-                    searchResults.data[searchResultIdx]["_source"]["page"]
-                  )}
-                  highlights={highlights.data || []}
-                  custom_highlights={{
-                    es: [],
-                  }}
-                />
-              </div>
-            ) : (
-              <AllSearchList
-                searchList={searchResults.data ? searchResults.data || [] : []}
-                page={0}
-                total={searchResults.data ? searchResults.data.length || 0 : 0}
-                loading={searchResults.isLoading}
-                onClick={(idx) => updateSearchResultIdx(idx)}
-                selectedFileIdx={searchResultIdx}
-              />
-            )}
-          </Row>
-        </TabPane>
+      <Tabs defaultActiveKey="2">
         <TabPane tab="Section Search" key="2">
           <div
             style={{
@@ -649,21 +558,6 @@ const ProjectPolicyView = (props) => {
               justifyContent: "center",
             }}
           >
-            <Select
-              style={{ width: "200px" }}
-              placeholder="Select Project"
-              size="large"
-              value={sectionSearchParams.project_id}
-              onSelect={(e) =>
-                updateSSearchParams({ ...sectionSearchParams, project_id: e })
-              }
-            >
-              {projects.map((item) => (
-                <Select.Option key={item[1]} value={item[1]}>
-                  {item[0]}
-                </Select.Option>
-              ))}
-            </Select>
             <Input.Search
               placeholder="input search text"
               allowClear

@@ -8,12 +8,17 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 // import BackgroundImage from "./assets/cool-background.svg";
 import BackgroundImage from "./assets/cool-background-edited.svg";
-
+import NavBar from "./containers/navbar";
 import ProfilePic from "./assets/profilepic.png";
-import Home from "./components/home";
+import Home from "./pages/home";
+import ChessboardRec from "./pages/chessboard";
+
+import Projects from "./pages/projects";
+
 import SkippingProject from "./components/skippingProject";
 import StockPredictions from "./components/stockPredictions";
 import FileSearch from "./components/fileSearch";
+import PDFParse from "./components/parsePdf";
 
 import * as ROUTES from "./constants/routes";
 
@@ -38,7 +43,8 @@ const App = () => (
   <Router>
     <QueryClientProvider client={queryClient}>
       <div>
-        <Header
+        <NavBar />
+        {/* <Header
           className="header"
           style={{
             background: "none",
@@ -67,13 +73,16 @@ const App = () => (
               </Menu>
             </Col>
           </Row>
-        </Header>
+        </Header> */}
 
         <div style={{ marginTop: "100px" }}>
           <Route exact path={ROUTES.LANDING} component={Home} />
+          <Route exact path={ROUTES.PROJECTS} component={Projects} />
           <Route exact path={ROUTES.SKIPPING_APP} component={SkippingProject} />
           <Route exact path={ROUTES.STOCK_PRED} component={StockPredictions} />
           <Route exact path={ROUTES.FILE_SEARCH} component={FileSearch} />
+          <Route exact path={ROUTES.PDF_PARSE} component={PDFParse} />
+          <Route exact path={ROUTES.Chessboard_REC} component={ChessboardRec} />
         </div>
         {/* <Route exact path={ROUTES.ADMIN} component={AdminPage} /> */}
       </div>
