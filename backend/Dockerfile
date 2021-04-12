@@ -34,7 +34,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 -m spacy download en_core_web_sm
 
 
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+# ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates locales \
     && locale-gen en_US.UTF-8 \
@@ -51,7 +51,7 @@ RUN ln -sf /dev/stdout /dev/stdout \
 	&& ln -sf /dev/stderr /dev/stdout
 
 ENV C_FORCE_ROOT='true'
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
+# ENV LANG C.UTF-8
+# ENV LC_ALL C.UTF-8
 
-ENTRYPOINT ["./entrypoint.sh"]
+# ENTRYPOINT ["./entrypoint.sh"]
