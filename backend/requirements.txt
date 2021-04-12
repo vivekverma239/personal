@@ -21,3 +21,4 @@ matplotlib
 tensorflow
 grpcio
 tensorflow-serving-api
+spacy
