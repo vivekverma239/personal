@@ -2,10 +2,10 @@ import os
 from elasticsearch import helpers,Elasticsearch
 import elasticsearch
 
-INDEX_NAME = os.environ["INDEX_NAME"]
-PAGE_INDEX_NAME = os.environ["PAGE_INDEX_NAME"]
+INDEX_NAME = os.environ.get("INDEX_NAME", "file_index")
+PAGE_INDEX_NAME = os.environ.get("PAGE_INDEX_NAME", "page_index")
 
-ES_HOST = os.environ["ES_HOST"]
+ES_HOST = os.environ.get("ES_HOST", "http://localhost:9200")
 es = Elasticsearch(hosts=[ES_HOST])
 
 def search_files(query=None, params={}): 

@@ -134,16 +134,16 @@ WSGI_APPLICATION = 'experiments.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'experiments',
-        'USER': os.environ['PGUSER'],
-        'PASSWORD': os.environ['PGPASSWORD'],
-        'HOST': os.environ['PGHOST'],
-        'PORT': os.environ['PGPORT'],
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'experiments',
+#         'USER': os.environ['PGUSER'],
+#         'PASSWORD': os.environ['PGPASSWORD'],
+#         'HOST': os.environ['PGHOST'],
+#         'PORT': os.environ['PGPORT'],
+#     }
+# }
 
 
 # Password validation
