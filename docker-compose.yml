@@ -1,8 +1,8 @@
 version: "3.3"
 services:
-  flask-backend:
+  backend:
     build: .
-    container_name: flask-backend
+    container_name: backend
     restart: always
     depends_on:
       - tf-serving
@@ -12,7 +12,7 @@ services:
       - "80:8000"
     environment:
       ENV: prod
-    command: bash -c "gunicorn --workers=2 --timeout 600 wsgi:app --log-level=debug -b 0.0.0.0:8000"
+    command: bash -c "python3 manage.py collectstatic -c --no-input && gunicorn --workers=3 experiments.wsgi -b 0.0.0.0:8000"
   tf-serving:
     container_name: tf-serving
     restart: always

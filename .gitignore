@@ -27,3 +27,6 @@ yarn-debug.log*
 yarn-error.log*
 
 **/__pycache__/*
+*.json
+serving_models/
+serving_models.zip
