@@ -13,6 +13,17 @@ services:
     environment:
       ENV: prod
     command: bash -c "python3 manage.py collectstatic -c --no-input && gunicorn --workers=3 experiments.wsgi -b 0.0.0.0:8000"
+  nginx: 
+    build: nginx 
+    container_name: nginx 
+    restart: always 
+    depends_on: 
+      - tf-serving
+      - backend 
+    expose 
+      - 80
+    ports:
+      - "80:80"
   tf-serving:
     container_name: tf-serving
     restart: always
