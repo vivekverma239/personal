@@ -3,6 +3,7 @@ import { ChessboardRecService } from "../../services/baseService";
 import FileButton from "../../components/common/fileUpload";
 import { useQuery } from "react-query";
 import Loader from "react-loader-spinner";
+import { apiURL } from "../../constants";
 
 const Chessboard = () => {
   const [data, updateData] = useState(null);
@@ -27,11 +28,11 @@ const Chessboard = () => {
     "chessboardPredict",
     () => chessService.predict(data),
     {
-      enabled: false,
+      enabled: false
     }
   );
 
-  const onSelect = (e) => {
+  const onSelect = e => {
     const file = e.target.files[0];
     const data = new FormData();
     data.append("file", file);
@@ -55,7 +56,7 @@ const Chessboard = () => {
             color: "#c383a6",
             //   letterSpacing: "2px",
             fontSize: "48px",
-            fontWeight: "bold",
+            fontWeight: "bold"
           }}
         >
           Chessboard Recognition
@@ -93,7 +94,7 @@ const Chessboard = () => {
               <p class="has-text-centered	mb-2 is-italic">Original Image</p>
               <figure className="image is-square ">
                 <img
-                  src={`http://localhost:8003/chessboard/download/?file=${encodeURI(
+                  src={`${apiURL}/chessboard/download/?file=${encodeURI(
                     predict.data.image
                   )}`}
                 ></img>
@@ -105,7 +106,7 @@ const Chessboard = () => {
 
               <figure className="image is-square">
                 <img
-                  src={`http://localhost:8003/chessboard/download/?file=${encodeURI(
+                  src={`${apiURL}/chessboard/download/?file=${encodeURI(
                     predict.data.blend
                   )}`}
                 ></img>
@@ -119,7 +120,7 @@ const Chessboard = () => {
 
               <figure className="image is-square">
                 <img
-                  src={`http://localhost:8003/chessboard/download/?file=${encodeURI(
+                  src={`${apiURL}/chessboard/download/?file=${encodeURI(
                     predict.data.board
                   )}`}
                 ></img>
@@ -130,7 +131,7 @@ const Chessboard = () => {
               <p class="has-text-centered	mb-2 is-italic">Detected Board</p>
               <figure className="image is-square">
                 <img
-                  src={`http://localhost:8003/chessboard/download/?file=${encodeURI(
+                  src={`${apiURL}/chessboard/download/?file=${encodeURI(
                     predict.data.predicted
                   )}`}
                 ></img>
