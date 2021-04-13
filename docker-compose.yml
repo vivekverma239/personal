@@ -27,8 +27,6 @@ services:
     volumes:
       - /home/ec2-user/personal/nginx/nginx-ssl.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt:/etc/letsencrypt
-  certbot:
-    image: certbot/certbot
   tf-serving:
     container_name: tf-serving
     restart: always

@@ -22,6 +22,7 @@ RUN apt-get update \
     && python3 -c "import nltk; nltk.download('punkt')" \
     && python3 -c "import nltk; nltk.download('averaged_perceptron_tagger')" \
     && mkdir -p logs \
+    && apt-get install ffmpeg libsm6 libxext6  -y \
     && apt-get install netcat -y
 
 # Only for certain ubuntu distribution type like in EXL
